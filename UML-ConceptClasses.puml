@@ -1,0 +1,92 @@
+@startuml
+
+hide circle
+title UML-diagram of conceptual classes of the Software Product
+
+Class User {
+    name
+    age
+    eMail
+}
+
+Class Doctor {
+    name
+    eMail
+    workExperience
+    workplace
+    specialization
+}
+
+Class "Advice on improving health" {
+    title
+    description
+    dateAdded
+    rating
+}
+
+Class "Advice category" {
+    theme
+}
+
+Class "Detailed information" {
+    title
+    dateAdded
+    rating
+    content
+    attachments
+}
+
+Class Catalogue {
+    theme
+    dateCreated
+}
+
+Class Document {
+    title
+    content
+    dateCreated
+}
+
+Class Keyword {
+    word
+}
+
+Class "An important part of the text" {
+    textPart
+}
+
+Class Note {
+    title
+    TextPart
+    dateCreated
+}
+
+"Advice category" o-- "Advice on improving health"
+
+"Advice on improving health" o-- "Detailed information"
+
+Catalogue o-- Document
+
+Document o-- Keyword
+
+Document o-- "An important part of the text"
+
+Doctor"1" --> "+""Advice on improving health" : creates
+
+User"+" --> "+""Advice on improving health" : sorts 
+
+User"+" --> "+""Detailed information" : looks through 
+
+User"1" --> "+"Catalogue : creates
+
+User"1" --> "+"Document : organizes
+
+User"1" --> "+"Keyword : looks for
+
+User"1" --> "+""An important part of the text" : highlights
+
+User"1" --> "+"Note : creates
+
+Note"+" --> "+""An important part of the text" : contains
+
+@enduml
