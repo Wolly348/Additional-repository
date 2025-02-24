@@ -17,7 +17,7 @@ Class Doctor {
     specialization
 }
 
-Class "Advice on improving health" {
+Class Advice {
     title
     description
     dateAdded
@@ -51,7 +51,7 @@ Class Keyword {
     word
 }
 
-Class "An important part of the text" {
+Class "Important text" {
     textPart
 }
 
