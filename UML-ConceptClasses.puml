@@ -57,7 +57,7 @@ Class "An important part of the text" {
 
 Class Note {
     title
-    TextPart
+    textPart
     dateCreated
 }
 
