@@ -61,19 +61,19 @@ Class Note {
     dateCreated
 }
 
-"Advice category" o-- "Advice on improving health"
+"Advice category" o-- Advice
 
-"Advice on improving health" o-- "Detailed information"
+Advice o-- "Detailed information"
 
 Catalogue o-- Document
 
 Document o-- Keyword
 
-Document o-- "An important part of the text"
+Document o-- "Important text"
 
-Doctor"1" --> "+""Advice on improving health" : creates
+Doctor"1" --> "+"Advice : creates
 
-User"+" --> "+""Advice on improving health" : sorts 
+User"+" --> "+"Advice : sorts 
 
 User"+" --> "+""Detailed information" : looks through 
 
@@ -83,10 +83,10 @@ User"1" --> "+"Document : organizes
 
 User"1" --> "+"Keyword : looks for
 
-User"1" --> "+""An important part of the text" : highlights
+User"1" --> "+""Important text" : highlights
 
 User"1" --> "+"Note : creates
 
-Note"+" --> "+""An important part of the text" : contains
+Note"+" --> "+""Important text" : contains
 
 @enduml
