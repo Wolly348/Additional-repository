@@ -33,7 +33,6 @@ Class "Detailed information" {
     dateAdded
     rating
     content
-    attachments
 }
 
 Class Catalogue {
