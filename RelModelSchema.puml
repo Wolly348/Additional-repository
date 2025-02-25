@@ -1,0 +1,134 @@
+@startuml
+
+title Logical Database Schema
+
+hide circle
+
+entity "User" as user {
+    (PK) user_id
+    --
+    name
+    age
+    eMail
+}
+
+entity "Doctor" as doctor {
+    (PK) doctor_id
+    --
+    name
+    eMail
+    workExperience
+    workplace
+    specialization
+}
+
+entity "Advice" as advice {
+    (PK) advice_id
+    --
+    title
+    description
+    dateAdded
+    rating
+    (FK) doctor_id
+    (FK) category_id
+}
+
+entity "Advice Category" as category {
+    (PK) category_id
+    --
+    theme
+}
+
+entity "Detailed Information" as detail {
+    (PK) info_id
+    --
+    title
+    dateAdded
+    rating
+    content
+    (FK) advice_id
+}
+
+entity "Catalogue" as catalogue {
+    (PK) catalogue_id
+    --
+    theme
+    dateCreated
+    (FK) user_id
+}
+
+entity "Document" as document {
+    (PK) document_id
+    --
+    title
+    content
+    dateCreated
+    (FK) catalogue_id
+    (FK) user_id
+}
+
+entity "Keyword" as keyword {
+    (PK) keyword_id
+    --
+    word
+    (FK) user_id
+    (FK) document_id
+}
+
+entity "Important Text" as important_text {
+    (PK) text_id
+    --
+    textPart
+    (FK) user_id
+    (FK) document_id
+}
+
+entity "Note" as note {
+    (PK) note_id
+    --
+    title
+    textPart
+    dateCreated
+    (FK) user_id
+}
+
+entity "Saving" as saving {
+    (PK) note_id, text_id
+    --
+    (FK) note_id
+    (FK) text_id
+}
+
+entity "Detailed Viewing" as detailed_viewing {
+    (PK) user_id, info_id
+    --
+    (FK) user_id
+    (FK) info_id
+}
+
+entity "Sorting" as sorting {
+    (PK) user_id, advice_id
+    --
+    (FK) user_id
+    (FK) advice_id
+}
+
+category --{ advice
+advice --{ detail
+catalogue --{ document
+document --{ keyword
+document --{ important_text
+user --{ detailed_viewing
+user --{ sorting
+user --{ catalogue
+user --{ document 
+user --{ keyword 
+user --{ important_text 
+user --{ note 
+note --{ saving
+important_text --{ saving
+doctor --{ advice 
+detail --{ detailed_viewing
+advice --{ sorting
+
+@enduml
