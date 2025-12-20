@@ -114,7 +114,7 @@ entity "Sorting" as sorting {
 }
 
 category --{ advice
-advice -- detail
+advice --{ detail
 catalogue --{ document
 document --{ keyword
 document --{ important_text
@@ -133,3 +133,4 @@ advice --{ sorting
 
 
 @enduml
+
