@@ -1,0 +1,133 @@
+@startuml
+left to right direction
+
+hide circle
+
+title UML diagram of software class prototypes
+
+class Users {
+    - usersId : Short
+    - fullName : String
+    - age : Short
+    - eMail : String
+}
+
+class Doctor {
+    - doctorId : Short
+    - fullName : String
+    - eMail : String
+    - workExperience : Short
+    - workplace : String
+    - specialization : String
+}
+
+class AdviceCategory {
+    - categoryId : Short
+    - theme : String
+}
+
+class Advice {
+    - adviceId : Short
+    - title : String
+    - description : String
+    - dateAdded : LocalDate
+    - rating : BigDecimal
+    - doctor : Doctor
+    - category : AdviceCategory
+
+    +getAdviceList()
+    +sortAdviceList()
+}
+
+class Sorting {
+    - users : Users
+    - advice : Advice
+}
+
+class DetailedInformation {
+    - infoId : Short
+    - title : String
+    - dateAdded : LocalDate
+    - rating : BigDecimal
+    - contentData : byte[]
+    - advice : Advice
+
+    + getDetails()
+}
+
+class DetailedViewing {
+    - users : Users
+    - info : DetailedInformation
+}
+
+class Catalogue {
+    - catalogueId : Short
+    - theme : String
+    - dateCreated : LocalDate
+    - users : Users
+
+    + createCatalogue()
+}
+
+class Document {
+    - documentId : Short
+    - title : String
+    - contentText : String
+    - dateCreated : LocalDate
+    - users : Users
+    - catalogue : Catalogue
+
+    + addDocument()
+}
+
+class Keywords {
+    - keywordId : Short
+    - word : String
+    - users : Users
+    - document : Document
+
+    + searchDocuments()
+}
+
+class ImportantText {
+    - textId : Short
+    - textPart : String
+    - users : Users
+    - document : Document
+
+    + highlightText()
+}
+
+class Note {
+    - noteId : Short
+    - title : String
+    - textPart : String
+    - dateCreated : LocalDate
+    - users : Users
+
+    + saveAsNote()
+}
+
+class Saving {
+    - importantText : ImportantText
+    - note : Note
+}
+
+Users "1" -- "0..*" Catalogue
+Users "1" -- "0..*" Document
+Users "1" -- "0..*" Keywords
+Users "1" -- "0..*" ImportantText
+Users "1" -- "0..*" Note
+Users "1" -- "0..*" DetailedViewing
+Users "1" -- "0..*" Sorting
+Doctor "1" -- "0..*" Advice
+AdviceCategory "1" o-- "0..*" Advice
+Advice "1" -- "0..*" Sorting
+Advice "1" *-- "1" DetailedInformation
+DetailedInformation "1" -- "0..*" DetailedViewing
+Catalogue "1" o-- "0..*" Document
+Document "1" *-- "0..*" Keywords
+Document "1" *-- "0..*" ImportantText
+ImportantText "1" -- "0..*" Saving
+Note "1" -- "0..*" Saving
+@enduml
